@@ -26,7 +26,7 @@ public class SimpleEventWriter {
 		writer.append(" [");
 		final int date = event.getDate(); // since it's O(N) in re the number of events
 		writer.append(Integer.toString(date));
-		if (event.getDuration() != 1) {
+		if (event.getDuration() != 0) {
 			writer.append(" - ");
 			writer.append(Integer.toString(date + event.getDuration()));
 		}

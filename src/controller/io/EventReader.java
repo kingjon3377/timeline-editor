@@ -47,7 +47,7 @@ public class EventReader {
 			duration = dateTwo - dateOne;
 		} else {
 			start = Integer.parseInt(dates.trim());
-			duration = 1;
+			duration = 0;
 		}
 		if (previous == null) {
 			return new SimpleEvent(desc, 3, duration, start);
