@@ -10,24 +10,31 @@ package model.event;
 public class SimpleEvent implements IEvent {
 	/**
 	 * Constructor.
+	 * @param desc the text description of the event
 	 * @param buf how much buffer time to leave after the previous event
 	 * @param dur this event's duration
 	 * @param date the date of this event
 	 */
-	public SimpleEvent(final int buf, final int dur, final int date) {
-		this(buf, dur, new RootEvent(date - buf));
+	public SimpleEvent(final String desc, final int buf, final int dur, final int date) {
+		this(desc, buf, dur, new RootEvent(date - buf));
 	}
 	/**
 	 * Constructor.
+	 * @param desc the text description of the event
 	 * @param buf how much buffer time to leave after the previous event
 	 * @param dur this event's duration
 	 * @param prev The previous event
 	 */
-	public SimpleEvent(final int buf, final int dur, final IEvent prev) {
+	public SimpleEvent(final String desc, final int buf, final int dur, final IEvent prev) {
+		description = desc;
 		buffer = buf;
 		duration = dur;
 		previous = prev;
 	}
+	/**
+	 * The text description of the event.
+	 */
+	private final String description;
 	/**
 	 * How much buffer time to leave after the previous event before this one.
 	 */
@@ -40,6 +47,12 @@ public class SimpleEvent implements IEvent {
 	 * The previous event.
 	 */
 	private IEvent previous;
+	/**
+	 * @return the text description of the event.
+	 */
+	public String getDescription() {
+		return description;
+	}
 	/**
 	 * @return How much buffer time to leave after the previous event before this one.
 	 */
