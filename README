@@ -1,3 +1,4 @@
-This project aims to create an editor for fictional timelines, starting with my
-projected future history of our own world. I have a draft of that that already,
-but editing it is becoming increasingly tedious.
+This project aims to create an editor for fictional timelines. These events
+have an order (each one knows what event it follows), an (integer) date (or an
+offset from the previous event), a duration, a description, and any number of
+"tags" (indicating plot threads, characters present, etc.).
