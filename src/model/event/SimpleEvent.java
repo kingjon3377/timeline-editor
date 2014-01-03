@@ -1,11 +1,15 @@
 package model.event;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * A simple event---not one that is just a wrapper around a list of other
  * events, but just an event.
- * 
+ *
  * @author Jonathan Lovelace
- * 
+ *
  */
 public class SimpleEvent implements IEvent {
 	/**
@@ -14,9 +18,10 @@ public class SimpleEvent implements IEvent {
 	 * @param buf how much buffer time to leave after the previous event
 	 * @param dur this event's duration
 	 * @param date the date of this event
+	 * @param tags any tags associated with this event
 	 */
-	public SimpleEvent(final String desc, final int buf, final int dur, final int date) {
-		this(desc, buf, dur, new RootEvent(date - buf));
+	public SimpleEvent(final String desc, final int buf, final int dur, final int date, final String... tags) {
+		this(desc, buf, dur, new RootEvent(date - buf), tags);
 	}
 	/**
 	 * Constructor.
@@ -24,12 +29,16 @@ public class SimpleEvent implements IEvent {
 	 * @param buf how much buffer time to leave after the previous event
 	 * @param dur this event's duration
 	 * @param prev The previous event
+	 * @param tags any tags associated with this event
 	 */
-	public SimpleEvent(final String desc, final int buf, final int dur, final IEvent prev) {
+	public SimpleEvent(final String desc, final int buf, final int dur, final IEvent prev, final String... tags) {
 		description = desc;
 		buffer = buf;
 		duration = dur;
 		previous = prev;
+		for (final String tag : tags) {
+			tagSet.add(tag);
+		}
 	}
 	/**
 	 * The text description of the event.
@@ -56,7 +65,6 @@ public class SimpleEvent implements IEvent {
 	/**
 	 * @return How much buffer time to leave after the previous event before this one.
 	 */
-	@Override
 	public int getBuffer() {
 		return buffer;
 	}
@@ -79,7 +87,7 @@ public class SimpleEvent implements IEvent {
 	 * @param event the previous event
 	 */
 	@Override
-	public void setPreviousEvent(IEvent event) {
+	public void setPreviousEvent(final IEvent event) {
 		if (event == null) {
 			throw new IllegalArgumentException("Null previous event");
 		}
@@ -91,5 +99,16 @@ public class SimpleEvent implements IEvent {
 	@Override
 	public IEvent getPreviousEvent() {
 		return previous;
+	}
+	/**
+	 * The set of tags associated with this event.
+	 */
+	private final Set<String> tagSet = new HashSet<>();
+	/**
+	 * @return any tags associated with this event
+	 */
+	@Override
+	public Set<String> getTags() {
+		return Collections.unmodifiableSet(tagSet);
 	}
 }

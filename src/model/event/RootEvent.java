@@ -1,5 +1,7 @@
 package model.event;
 
+import java.util.Collections;
+import java.util.Set;
 import java.util.logging.Logger;
 
 /**
@@ -14,17 +16,10 @@ public class RootEvent implements IEvent {
 	private final int date;
 	/**
 	 * Constructor
-	 * @param start the starting date for the timeline 
+	 * @param start the starting date for the timeline
 	 */
 	public RootEvent(final int start) {
 		date = start;
-	}
-	/**
-	 * @return 0, as "buffer" is meaningless for this class.
-	 */
-	@Override
-	public int getBuffer() {
-		return 0;
 	}
 	/**
 	 * @return 0, as "duration" is meaningless for this class.
@@ -40,11 +35,11 @@ public class RootEvent implements IEvent {
 	public int getDate() {
 		return date;
 	}
-	
+
 	/**
 	 * We do nothing here, as there *is* and *can be* no previous event before
 	 * the timeline starts. In fact, we log this as a warning.
-	 * 
+	 *
 	 * @param event
 	 *            Ignored
 	 */
@@ -58,5 +53,12 @@ public class RootEvent implements IEvent {
 	@Override
 	public IEvent getPreviousEvent() {
 		return this;
+	}
+	/**
+	 * @return the empty set---the root evennt has no tags.
+	 */
+	@Override
+	public Set<String> getTags() {
+		return Collections.emptySet();
 	}
 }
