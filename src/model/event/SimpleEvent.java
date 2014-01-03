@@ -88,9 +88,6 @@ public class SimpleEvent implements IEvent {
 	 */
 	@Override
 	public void setPreviousEvent(final IEvent event) {
-		if (event == null) {
-			throw new IllegalArgumentException("Null previous event");
-		}
 		previous = event;
 	}
 	/**
