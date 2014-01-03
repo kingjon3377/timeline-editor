@@ -9,6 +9,8 @@ import java.util.List;
 import model.event.IEvent;
 import model.event.SimpleEvent;
 
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * A class to read Events from file.
  * @author Jonathan Lovelace
@@ -17,7 +19,7 @@ import model.event.SimpleEvent;
 public class EventReader {
 	/**
 	 * Read an Event from a line.
-	 * 
+	 *
 	 * @param line
 	 *            the line to read
 	 * @param previous
@@ -25,7 +27,7 @@ public class EventReader {
 	 *            version of the SimpleEvent's constructor, and pass in a buffer of 3.
 	 * @return the Event contained in it.
 	 */
-	public IEvent readLine(final String line, final IEvent previous) {
+	public IEvent readLine(final String line, @Nullable final IEvent previous) {
 		final String[] first = line.split("\\[");
 		if (first.length != 2 || !first[1].endsWith("]")) {
 			throw new IllegalArgumentException("Line must end with bracketed dates");

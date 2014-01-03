@@ -1,3 +1,6 @@
 syntax: glob
 *.class
 .sawja_prefs
+org.eclipse.jdt.annotation*.jar
+.*.swp
+.*.swo
