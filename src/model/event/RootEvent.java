@@ -59,6 +59,8 @@ public class RootEvent implements IEvent {
 	 */
 	@Override
 	public Set<String> getTags() {
-		return Collections.emptySet();
+		final Set<String> retval = Collections.emptySet();
+		assert retval != null;
+		return retval;
 	}
 }

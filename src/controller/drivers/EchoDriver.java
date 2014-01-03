@@ -10,9 +10,9 @@ import controller.io.SimpleEventWriter;
 /**
  * A driver to read a list of events and write them back, to verify that all is
  * working correctly.
- * 
+ *
  * @author Jonathan Lovelace
- * 
+ *
  */
 public class EchoDriver {
 	/**
@@ -23,7 +23,7 @@ public class EchoDriver {
 	}
 	/**
 	 * Driver method.
-	 * 
+	 *
 	 * @param args
 	 *            a list of filenames to read from and then write to. Only use
 	 *            this on unmodified files under version control!
@@ -36,6 +36,9 @@ public class EchoDriver {
 			final EventReader reader = new EventReader();
 			final SimpleEventWriter writer = new SimpleEventWriter();
 			for (String arg : args) {
+				if (arg == null) {
+					continue;
+				}
 				try {
 					writer.writeEvents(reader.readEvents(arg), arg);
 				} catch (final IOException e) {

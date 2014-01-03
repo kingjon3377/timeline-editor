@@ -54,11 +54,8 @@ public class SimpleEventWriter {
 	 * @throws IOException on I/O error opening or writing to the file
 	 */
 	public void writeEvents(final List<IEvent> events, final String file) throws IOException {
-		final Writer writer = new FileWriter(file);
-		try {
+		try (final Writer writer = new FileWriter(file)) {
 			writeEvents(events, writer);
-		} finally {
-			writer.close();
 		}
 	}
 }

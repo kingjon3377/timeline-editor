@@ -32,7 +32,8 @@ public class EventReader {
 		if (first.length != 2 || !first[1].endsWith("]")) {
 			throw new IllegalArgumentException("Line must end with bracketed dates");
 		}
-		final String desc = first[0].trim();
+		final String firstField = first[0].trim();
+		final String desc = firstField == null ? "" : firstField;
 		final String dates = first[1].substring(0, first[1].length() - 1);
 		// ESCA-JAVA0177:
 		final int start;
@@ -64,7 +65,7 @@ public class EventReader {
 	 */
 	public List<IEvent> readEvents(final BufferedReader reader) throws IOException {
 		IEvent previous = null;
-		List<IEvent> retval = new LinkedList<IEvent>();
+		List<IEvent> retval = new LinkedList<>();
 		String line;
 		while ((line = reader.readLine()) != null) {
 			final IEvent event = readLine(line, previous);
@@ -79,11 +80,9 @@ public class EventReader {
 	 * @throws IOException on I/O error opening or reading the file
 	 */
 	public List<IEvent> readEvents(final String file) throws IOException {
-		final BufferedReader reader = new BufferedReader(new FileReader(file));
-		try {
+		try (final BufferedReader reader = new BufferedReader(new FileReader(
+				file))) {
 			return readEvents(reader);
-		} finally {
-			reader.close();
 		}
 	}
 }

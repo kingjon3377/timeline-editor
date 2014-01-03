@@ -106,6 +106,8 @@ public class SimpleEvent implements IEvent {
 	 */
 	@Override
 	public Set<String> getTags() {
-		return Collections.unmodifiableSet(tagSet);
+		final Set<String> retval = Collections.unmodifiableSet(tagSet);
+		assert retval != null;
+		return retval;
 	}
 }
