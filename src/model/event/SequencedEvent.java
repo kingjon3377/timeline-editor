@@ -5,8 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * A simple event---not one that is just a wrapper around a list of other
- * events, but just an event.
+ * A simple event in a sequence---not one that is just a wrapper around a list
+ * of other events, but just an event. Its date is defined by the date and
+ * duration of the previous event and by a "buffer" it keeps between them.
  *
  * @author Jonathan Lovelace
  *
