@@ -7,7 +7,7 @@ import java.util.List;
 
 import model.event.IEvent;
 import model.event.RootEvent;
-import model.event.SimpleEvent;
+import model.event.SequencedEvent;
 
 /**
  * A class to write events in the format the EventReader reads.
@@ -21,7 +21,7 @@ public class SimpleEventWriter {
 	 * @param writer the writer to write to
 	 * @throws IOException on writing error
 	 */
-	public void writeEvent(final SimpleEvent event, final Writer writer) throws IOException {
+	public void writeEvent(final SequencedEvent event, final Writer writer) throws IOException {
 		writer.append(event.getDescription());
 		writer.append(" [");
 		final int date = event.getDate(); // since it's O(N) in re the number of events
@@ -40,8 +40,8 @@ public class SimpleEventWriter {
 	 */
 	public void writeEvents(final List<IEvent> events, final Writer writer) throws IOException {
 		for (IEvent event : events) {
-			if (event instanceof SimpleEvent) {
-				writeEvent((SimpleEvent) event, writer);
+			if (event instanceof SequencedEvent) {
+				writeEvent((SequencedEvent) event, writer);
 			} else if (!(event instanceof RootEvent)) {
 				throw new IllegalStateException("Unhandled event type");
 			}

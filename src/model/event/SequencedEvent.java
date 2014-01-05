@@ -11,7 +11,7 @@ import java.util.Set;
  * @author Jonathan Lovelace
  *
  */
-public class SimpleEvent implements IEvent {
+public class SequencedEvent implements IEvent {
 	/**
 	 * Constructor.
 	 * @param desc the text description of the event
@@ -20,7 +20,7 @@ public class SimpleEvent implements IEvent {
 	 * @param date the date of this event
 	 * @param tags any tags associated with this event
 	 */
-	public SimpleEvent(final String desc, final int buf, final int dur, final int date, final String... tags) {
+	public SequencedEvent(final String desc, final int buf, final int dur, final int date, final String... tags) {
 		this(desc, buf, dur, new RootEvent(date - buf), tags);
 	}
 	/**
@@ -31,7 +31,7 @@ public class SimpleEvent implements IEvent {
 	 * @param prev The previous event
 	 * @param tags any tags associated with this event
 	 */
-	public SimpleEvent(final String desc, final int buf, final int dur, final IEvent prev, final String... tags) {
+	public SequencedEvent(final String desc, final int buf, final int dur, final IEvent prev, final String... tags) {
 		description = desc;
 		buffer = buf;
 		duration = dur;

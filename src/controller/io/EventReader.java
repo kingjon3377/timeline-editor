@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.event.IEvent;
-import model.event.SimpleEvent;
+import model.event.SequencedEvent;
 
 import org.eclipse.jdt.annotation.Nullable;
 
@@ -53,9 +53,9 @@ public class EventReader {
 			duration = 0;
 		}
 		if (previous == null) {
-			return new SimpleEvent(desc, 3, duration, start);
+			return new SequencedEvent(desc, 3, duration, start);
 		} else {
-			return new SimpleEvent(desc, start - previous.getDuration() - previous.getDate(), duration, previous);
+			return new SequencedEvent(desc, start - previous.getDuration() - previous.getDate(), duration, previous);
 		}
 	}
 	/**
